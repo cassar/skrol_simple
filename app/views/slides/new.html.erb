@@ -1,10 +1,10 @@
 <%= form_for @slide do |f| %>
   <%= f.label :maltese_latin %>
   <%= f.text_field :maltese_latin %>
-  <%= f.label :maltese_ipa %>
-  <%= f.text_field :maltese_ipa %>
+  <br>
   <%= f.label :english_latin %>
   <%= f.text_field :english_latin %>
+  <br>
   <%= submit_tag 'Create' %>
 <% end %>
 <%= link_to 'Home', root_path %>
