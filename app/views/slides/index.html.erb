@@ -1,0 +1,7 @@
+<%= render 'front_logo' %>
+<div class="signOptions">
+  <% if @first_slide.present? %>
+    <%= link_to 'Slides', slide_path(@first_slide), class: "signLinks" %>
+  <% end %>
+  <%= link_to 'New Slide', new_slide_path, class: "signLinks" %>
+</div>
