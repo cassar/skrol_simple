@@ -11,11 +11,12 @@ class SlidesController < ApplicationController
 
   def new
     @slide = Slide.new
+    @slides = Slide.order(:id).reverse
   end
 
   def create
     Slide.create slide_params
-    redirect_to new_slide_path
+    redirect_to new_slide_path, notice: 'New Slide Created'
   end
 
   private
