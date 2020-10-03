@@ -7,6 +7,7 @@ class SlidesController < ApplicationController
     @slide = Slide.find params[:id]
     Slide.count
     @next_slide_id = next_slide_id
+    @previous_slide_id = previous_slide_id
   end
 
   def new
@@ -27,8 +28,15 @@ class SlidesController < ApplicationController
 
   def next_slide_id
     incremented = @slide.id + 1
-    return incremented if incremented <= Slide.count
+    return incremented if incremented <= Slide.last.id
 
-    1
+    Slide.first.id
+  end
+
+  def previous_slide_id
+    decremented = @slide.id - 1
+    return decremented if decremented >= Slide.first.id
+
+    Slide.last.id
   end
 end
