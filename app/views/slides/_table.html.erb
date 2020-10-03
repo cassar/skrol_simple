@@ -1,0 +1,18 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Maltese</th>
+      <th scope="col">English</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @slides.each do |slide| %>
+      <tr>
+        <th scope="row"><%= link_to slide.id, slide_path(slide) %></th>
+        <td><%= slide.maltese_latin %></td>
+        <td><%= slide.english_latin %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

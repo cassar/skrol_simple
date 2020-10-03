@@ -1,6 +1,6 @@
 class SlidesController < ApplicationController
   def index
-    @first_slide = Slide.first
+    @slides = Slide.all.order(:id)
   end
 
   def show
