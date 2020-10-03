@@ -1,10 +1,41 @@
-.slide {
-  font-size: 5em;
-  text-align: center;
-  margin-top: 3vw;
-  margin-bottom: 3vw;
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-device-width: 320px) and (min-width : 320px) {
+  .slide {
+    font-size: 1em;
+    text-align: center;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+  }
+
+  .slide-element {
+    height: 2.5em;
+  }
 }
 
-.slide-element {
-  height: 1.7em;
+/* Extra Small Devices, Phones */
+@media only screen and (min-device-width: 480px) and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .slide {
+    font-size: 5em;
+  }
+
+  .slide-element {
+    height: 1.7em;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }
