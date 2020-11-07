@@ -9,5 +9,9 @@
   </div>
   <br>
   <%= submit_tag 'Create', type: 'submit', class: "btn btn-primary" %>
-  <%= link_to 'Home', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
+  <% if action_name == 'new' %>
+    <%= link_to 'Home', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
+  <% elsif action_name == 'edit' %>
+    <%= link_to 'Back', slide_path(@slide), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
+  <% end %>
 <% end %>

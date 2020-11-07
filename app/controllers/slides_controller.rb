@@ -20,6 +20,16 @@ class SlidesController < ApplicationController
     redirect_to new_slide_path, notice: 'New Slide Created'
   end
 
+  def edit
+    @slide = Slide.find params[:id]
+  end
+
+  def update
+    @slide = Slide.find params[:id]
+    @slide.update slide_params
+    redirect_to slide_path(@slide), notice: 'Slide updated'
+  end
+
   private
 
   def slide_params

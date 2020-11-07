@@ -28,4 +28,20 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to new_slide_path
   end
+
+  test 'get edit' do
+    get edit_slide_path slides(:one)
+    assert_response :success
+  end
+
+  test 'patch update' do
+    patch slide_path slides(:one), params: {
+      slide: {
+        english_latin: 'updated'
+      }
+    }
+    assert_redirected_to slide_path(slides(:one))
+    slides(:one).reload
+    assert slides(:one).english_latin == 'updated'
+  end
 end
