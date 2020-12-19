@@ -1,6 +1,8 @@
 class SlidesController < ApplicationController
+  before_action :language
+
   def index
-    @slides = Slide.all.order(:id)
+    @slides = @language.slides.order(:id)
   end
 
   def show
@@ -16,8 +18,8 @@ class SlidesController < ApplicationController
   end
 
   def create
-    Slide.create slide_params
-    redirect_to new_slide_path, notice: 'New Slide Created'
+    @language.slides.create slide_params
+    redirect_to new_language_slide_path(@language), notice: 'New Slide Created'
   end
 
   def edit
@@ -27,26 +29,30 @@ class SlidesController < ApplicationController
   def update
     @slide = Slide.find params[:id]
     @slide.update slide_params
-    redirect_to slide_path(@slide), notice: 'Slide updated'
+    redirect_to language_slide_path(@language, @slide), notice: 'Slide updated'
   end
 
   private
 
+  def language
+    @language = Language.find_by_name params[:language_id]
+  end
+
   def slide_params
-    params.require(:slide).permit(:maltese_ipa, :maltese_latin, :english_latin)
+    params.require(:slide).permit(:target_ipa, :target_script, :english_latin)
   end
 
   def next_slide_id
     incremented = @slide.id + 1
-    return incremented if incremented <= Slide.last.id
+    return incremented if incremented <= language.slides.last.id
 
-    Slide.first.id
+    @language.slides.first.id
   end
 
   def previous_slide_id
     decremented = @slide.id - 1
-    return decremented if decremented >= Slide.first.id
+    return decremented if decremented >= @language.slides.first.id
 
-    Slide.last.id
+    @language.slides.last.id
   end
 end

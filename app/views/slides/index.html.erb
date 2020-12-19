@@ -1,3 +1,3 @@
-<%= render 'front_logo' %>
-<%= render 'button_box' %>
+<%= render 'components/button_box', label: 'New Slide', path_for_button: new_language_slide_path(@language) %>
 <%= render 'table' %>
+<%= link_to 'All Languages', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>

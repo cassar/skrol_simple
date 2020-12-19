@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SlideTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'associations' do
+    assert slides(:one).language == languages(:one)
+  end
 end

@@ -1,0 +1,7 @@
+<%= render 'front_logo' %>
+<div class="new-language">
+  <%= render 'components/button_box', label: 'New Language', path_for_button: new_language_path %>
+</div>
+<div class="languages">
+  <%= render partial: 'language', collection: @languages %>
+</div>

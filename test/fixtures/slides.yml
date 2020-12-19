@@ -3,11 +3,13 @@
 one:
   id: 1
   english_latin: MyString
-  maltese_ipa: MyString
-  maltese_latin: MyString
+  target_script: MyString
+  target_ipa: MyString
+  language: one
 
 two:
   id: 2
   english_latin: MyString
-  maltese_ipa: MyString
-  maltese_latin: MyString
+  target_script: MyString
+  target_ipa: MyString
+  language: one

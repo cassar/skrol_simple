@@ -1,8 +1,8 @@
 <ul class="list-group slide">
-  <li class="list-group-item slide-element"><%= @slide.maltese_latin %></li>
+  <li class="list-group-item slide-element"><%= @slide.target_script %></li>
   <li class="list-group-item slide-element"><%= @slide.english_latin %></li>
 </ul>
 <%= render 'slide_nav' %>
 <nav>
-  <%= link_to 'Home', root_path, class: 'btn btn-primary', role: 'button' %>
+  <%= link_to "#{@language.title} Sentences", language_slides_path(@language), class: 'btn btn-primary', role: 'button' %>
 </nav>

@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_114451) do
+ActiveRecord::Schema.define(version: 2020_12_19_040506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "slides", force: :cascade do |t|
-    t.string "english_latin"
-    t.string "maltese_ipa"
-    t.string "maltese_latin"
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.string "iso_639_1"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "slides", force: :cascade do |t|
+    t.string "english_latin"
+    t.string "target_ipa"
+    t.string "target_script"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "language_id"
+    t.index ["language_id"], name: "index_slides_on_language_id"
+  end
+
+  add_foreign_key "slides", "languages"
 end

@@ -1,7 +1,7 @@
-<%= form_for @slide do |f| %>
+<%= form_for [@language, @slide] do |f| %>
   <div class="form-group">
-    <%= f.label :maltese_latin, 'Maltese' %>
-    <%= f.text_field :maltese_latin, class: 'form-control form-control-lg' %>
+    <%= f.label :target_script, @language.title %>
+    <%= f.text_field :target_script, class: 'form-control form-control-lg' %>
   </div>
   <div class="form-group">
     <%= f.label :english_latin, 'English' %>
@@ -10,9 +10,9 @@
   <br>
   <% if action_name == 'new' %>
     <%= submit_tag 'Create', type: 'submit', class: "btn btn-primary" %>
-    <%= link_to 'Home', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
+    <%= link_to 'Slides', language_slides_path(@language), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
   <% elsif action_name == 'edit' %>
     <%= submit_tag 'Update', type: 'submit', class: "btn btn-primary" %>
-    <%= link_to 'Back', slide_path(@slide), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
+    <%= link_to 'Back', language_slide_path(@language, @slide), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
   <% end %>
 <% end %>
