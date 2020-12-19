@@ -1,3 +1,8 @@
+<ul class="list-group slide">
+  <li class="list-group-item slide-element"><%= @slide.target_script %></li>
+  <li class="list-group-item slide-element"><%= @slide.english_latin %></li>
+</ul>
+
 <div class="nav btn-group btn-group-lg justify-content-center" role="group" aria-label="...">
   <%= link_to language_slide_path(@language, @previous_slide_id), class: 'btn btn-primary btn-lg active', role: 'button', "aria-pressed" => 'true' do  %>
     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

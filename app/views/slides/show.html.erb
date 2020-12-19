@@ -1,6 +1,7 @@
 <% content_for :title, @language.title %>
-<%= render 'slide', slide: @slide %>
-<%= render 'slide_nav' %>
+<div class="frame">
+  <%= render 'frame' %>
+</div>
 <nav>
   <%= link_to "#{@language.title} Sentences", language_slides_path(@language), class: 'btn btn-primary', role: 'button' %>
 </nav>
