@@ -16,6 +16,11 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'get show remote' do
+    get language_slide_path @language, @slide, xhr: true
+    assert_response :success
+  end
+
   test 'get new' do
     get new_language_slide_path @language
     assert_response :success
