@@ -14,7 +14,7 @@ class SlidesController < ApplicationController
 
   def new
     @slide = Slide.new
-    @slides = Slide.order(:id).reverse
+    @slides = Slide.order(:id).reverse.take(10)
   end
 
   def create
