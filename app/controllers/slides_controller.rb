@@ -7,14 +7,13 @@ class SlidesController < ApplicationController
 
   def show
     @slide = Slide.find params[:id]
-    Slide.count
     @next_slide_id = next_slide_id
     @previous_slide_id = previous_slide_id
   end
 
   def new
     @slide = Slide.new
-    @slides = Slide.order(:id).reverse.take(10)
+    @slides = @language.slides.order(:id).reverse.take(10)
   end
 
   def create
@@ -44,7 +43,7 @@ class SlidesController < ApplicationController
 
   def next_slide_id
     incremented = @slide.id + 1
-    return incremented if incremented <= language.slides.last.id
+    return incremented if incremented <= @language.slides.last.id
 
     @language.slides.first.id
   end
