@@ -5,6 +5,15 @@ class SlidesController < ApplicationController
     @slides = @language.slides.order(:id)
   end
 
+  def first
+    first_slide = @language.slides.first
+    if first_slide
+      redirect_to language_slide_path @language, first_slide
+    else
+      redirect_to language_slides_path @language
+    end
+  end
+
   def show
     @slide = Slide.find params[:id]
     @next_slide_id = next_slide_id

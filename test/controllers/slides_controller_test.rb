@@ -16,6 +16,17 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'get first present' do
+    get first_language_slides_path(@language)
+    assert_redirected_to language_slide_path(@language, @slide)
+  end
+
+  test 'get first nil' do
+    other_language = languages :two
+    get first_language_slides_path(other_language)
+    assert_redirected_to language_slides_path(other_language)
+  end
+
   test 'get new' do
     get new_language_slide_path @language
     assert_response :success
