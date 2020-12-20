@@ -18,13 +18,15 @@
 
   #english-latin {
     color: rgba(0, 0, 0, 0);
-    transition-property: color;
+    background-color: lightgray;
+    transition-property: color, background-color;
     transition-duration: 0.5s;
     transition-timing-function: linear;
   }
 
-  #english-latin:hover {
+  #english-latin:hover, #english-latin:active {
     color: rgba(0, 0, 0, 1);
+    background-color: inherit;
   }
 }
 
