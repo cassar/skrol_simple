@@ -1,7 +1,7 @@
 class Language < ApplicationRecord
-  before_save :downcase_name
-
   has_many :slides, dependent: :destroy
+
+  before_validation :downcase_name
 
   validates_uniqueness_of :name, :iso_639_1
 
