@@ -18,6 +18,9 @@
 
   #english-latin {
     color: rgba(0, 0, 0, 0);
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
   }
 
   #english-latin:hover {
