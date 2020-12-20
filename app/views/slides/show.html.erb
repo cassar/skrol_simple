@@ -3,6 +3,6 @@
   <%= render 'frame' %>
 </div>
 <nav>
-  <%= link_to "#{@language.title} Sentences", language_slides_path(@language), class: 'btn btn-primary', role: 'button' %>
+  <%= link_to "All #{@language.title} Slides", language_slides_path(@language), class: 'btn btn-primary', role: 'button' %>
   <%= link_to 'All Languages', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
 </nav>
