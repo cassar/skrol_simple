@@ -1,5 +1,5 @@
 <% content_for :title, "#{@language.title} Sentences" %>
-<h1 class="slide-title"><%= yield :title %></h1>
+<h1><%= yield :title %></h1>
 <%= render 'components/button_box', label: 'New Slide', path_for_button: new_language_slide_path(@language) %>
 <%= render 'table' %>
 <%= link_to 'All Languages', root_path, class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>

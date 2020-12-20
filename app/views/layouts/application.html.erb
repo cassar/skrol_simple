@@ -16,11 +16,13 @@
   </head>
 
   <body class="container">
-    <% flash.each do |type, msg| %>
-      <p class="alert alert-success <%= type %>" role="alert" >
-        <%= msg %>
-      </p>
-    <% end %>
+    <header>
+      <% flash.each do |type, msg| %>
+        <p class="alert alert-success <%= type %>" role="alert" >
+          <%= msg %>
+        </p>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
