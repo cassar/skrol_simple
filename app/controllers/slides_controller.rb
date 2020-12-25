@@ -50,17 +50,19 @@ class SlidesController < ApplicationController
     params.require(:slide).permit(:target_ipa, :target_script, :english_latin)
   end
 
-  def next_slide_id
-    incremented = @slide.id + 1
-    return incremented if incremented <= @language.slides.last.id
+  def slide_ids
+    @slide_ids ||= @language.slides.order(:id).pluck(:id)
+  end
 
-    @language.slides.first.id
+  def next_slide_id
+    current_index = slide_ids.index @slide.id
+    incremented = slide_ids[current_index + 1]
+    return incremented if incremented.present?
+
+    slide_ids.first
   end
 
   def previous_slide_id
-    decremented = @slide.id - 1
-    return decremented if decremented >= @language.slides.first.id
-
-    @language.slides.last.id
+    slide_ids[(slide_ids.index @slide.id) - 1]
   end
 end

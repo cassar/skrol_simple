@@ -16,6 +16,11 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'get show last' do
+    get language_slide_path @language, @language.slides.last
+    assert_response :success
+  end
+
   test 'get first present' do
     get first_language_slides_path(@language)
     assert_redirected_to language_slide_path(@language, @slide)
