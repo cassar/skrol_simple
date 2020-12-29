@@ -6,5 +6,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # Auth0
+  get 'auth/auth0/callback' => 'auth0#callback'
+  get 'auth/failure' => 'auth0#failure'
+  post 'auth/logout' => 'logout#logout'
+  get 'auth/logged_out' => 'logout#logged_out'
+
   root 'languages#index'
 end
