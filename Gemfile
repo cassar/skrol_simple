@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'omniauth-auth0', '~> 2.2'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
+# To manage secrets
+gem 'figaro'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 # Bootstrap 4 ruby gem for Ruby on Rails (Sprockets)
