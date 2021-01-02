@@ -56,7 +56,7 @@ class LanguagesControllerTest < ActionDispatch::IntegrationTest
   test 'patch update fail' do
     patch language_path @language, params: {
       language: {
-        name: Language.first.name
+        name: Language.second.name
       }
     }
     assert_response :success
