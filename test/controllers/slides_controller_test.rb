@@ -11,8 +11,18 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'get show' do
-    get language_slide_path @language, @slide
+  test 'get show no user' do
+    assert_no_difference 'Visit.count' do
+      get language_slide_path @language, @slide
+    end
+    assert_response :success
+  end
+
+  test 'get show with user' do
+    sign_in_as_student 'skrol@example.com'
+    assert_difference 'Visit.count', 1 do
+      get language_slide_path @language, @slide
+    end
     assert_response :success
   end
 
@@ -21,15 +31,23 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'get first present' do
-    get first_language_slides_path(@language)
-    assert_redirected_to language_slide_path(@language, @slide)
+  test 'get next last visit' do
+    sign_in_as_student 'skrol@example.com'
+    get current_language_slides_path @language
+    assert_redirected_to language_slide_path @language, slides(:two)
   end
 
-  test 'get first nil' do
+  test 'get next no visits' do
+    sign_in_as_student 'skrol@example.com'
+    Visit.destroy_all
+    get current_language_slides_path @language
+    assert_redirected_to language_slide_path @language, @slide
+  end
+
+  test 'get next no slides' do
     other_language = languages :two
-    get first_language_slides_path(other_language)
-    assert_redirected_to language_slides_path(other_language)
+    get current_language_slides_path other_language
+    assert_redirected_to language_slides_path other_language
   end
 
   test 'get new' do

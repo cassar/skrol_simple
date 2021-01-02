@@ -2,7 +2,7 @@
 
 one:
   id: 1
-  email: MyString
+  email: skrol@example.com
 
 two:
   id: 2

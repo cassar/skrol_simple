@@ -1,14 +1,17 @@
 class SlidesController < ApplicationController
+  include StudentManager
+
   before_action :language
+
+  after_action :record_visit, only: :show, if: -> { current_student.present? }
 
   def index
     @slides = @language.slides.order(:id)
   end
 
-  def first
-    first_slide = @language.slides.first
-    if first_slide
-      redirect_to language_slide_path @language, first_slide
+  def current
+    if current_slide
+      redirect_to language_slide_path @language, current_slide
     else
       redirect_to language_slides_path @language
     end
@@ -64,5 +67,21 @@ class SlidesController < ApplicationController
 
   def previous_slide_id
     slide_ids[(slide_ids.index @slide.id) - 1]
+  end
+
+  def record_visit
+    current_student.visits.create slide: @slide
+  end
+
+  def current_slide
+    @current_slide_id ||= begin
+      current_slide = if current_student.present?
+        current_student
+          .visited_slides
+          .where(language: @language)
+          .first
+      end
+      current_slide ||= @language.slides.first
+    end
   end
 end

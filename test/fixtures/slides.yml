@@ -5,11 +5,11 @@ one:
   english_latin: MyString
   target_script: MyString
   target_ipa: MyString
-  language: one
+  language_id: 1
 
 two:
   id: 2
   english_latin: MyString
   target_script: MyString
   target_ipa: MyString
-  language: one
+  language_id: 1
