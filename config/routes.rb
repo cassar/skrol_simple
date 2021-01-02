@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'auth/failure' => 'auth0#failure'
   post 'auth/logout' => 'logout#logout'
   get 'auth/logged_out' => 'logout#logged_out'
+  post 'test_login' => 'auth0#test_login' unless Rails.env.production?
 
   root 'languages#index'
 end
