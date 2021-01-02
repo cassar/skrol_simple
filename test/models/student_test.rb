@@ -12,7 +12,8 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test 'associations' do
-    assert @student.visits.include? visits :one
+    assert @student.visits.last == visits(:one)
+    assert @student.visits.first == visits(:two)  
     assert @student.visited_slides.include? slides :one
   end
 end
