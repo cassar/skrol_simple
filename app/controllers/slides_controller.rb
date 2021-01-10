@@ -25,12 +25,19 @@ class SlidesController < ApplicationController
 
   def new
     @slide = Slide.new
-    @slides = @language.slides.order(:id).reverse.take(10)
+    slides_for_new
   end
 
   def create
-    @language.slides.create slide_params
-    redirect_to new_language_slide_path(@language), notice: 'New Slide Created'
+    @slide = @language.slides.new slide_params
+    if @slide.save
+      redirect_to new_language_slide_path(@language),
+        notice: 'New Slide Created'
+    else
+      slides_for_new
+      flash[:alert] = @slide.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def edit
@@ -39,11 +46,20 @@ class SlidesController < ApplicationController
 
   def update
     @slide = Slide.find params[:id]
-    @slide.update slide_params
-    redirect_to language_slide_path(@language, @slide), notice: 'Slide updated'
+    if @slide.update slide_params
+      redirect_to language_slide_path(@language, @slide),
+        notice: 'Slide updated'
+    else
+      flash[:alert] = @slide.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   private
+
+  def slides_for_new
+    @slides = @language.slides.order(:id).reverse.take(10)
+  end
 
   def language
     @language = Language.find_by_name params[:language_id]

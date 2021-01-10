@@ -18,7 +18,7 @@
   <body class="container">
     <header>
       <% flash.each do |type, msg| %>
-        <p class="alert alert-success <%= type %>" role="alert" >
+        <p class="alert alert-<%= bootstrop_context_label_for(type) %>" role="alert" >
           <%= msg %>
         </p>
       <% end %>

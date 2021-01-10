@@ -55,7 +55,7 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'post create' do
+  test 'post create success' do
     assert_difference 'Slide.count', 1 do
       post language_slides_path(@language), params: {
         slide: {
@@ -68,12 +68,25 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_language_slide_path @language
   end
 
+  test 'post create fail' do
+    assert_no_difference 'Slide.count' do
+      post language_slides_path(@language), params: {
+        slide: {
+          english_latin: 'hello',
+          target_script: nil,
+          target_ipa: nil
+        }
+      }
+    end
+    assert_response :success
+  end
+
   test 'get edit' do
     get edit_language_slide_path @language, @slide
     assert_response :success
   end
 
-  test 'patch update' do
+  test 'patch update success' do
     patch language_slide_path @language, @slide, params: {
       slide: {
         english_latin: 'updated'
@@ -82,5 +95,16 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to language_slide_path @language, @slide
     @slide.reload
     assert @slide.english_latin == 'updated'
+  end
+
+  test 'patch update fail' do
+    patch language_slide_path @language, @slide, params: {
+      slide: {
+        english_latin: nil
+      }
+    }
+    assert_response :success
+    @slide.reload
+    assert_not @slide.english_latin.nil?
   end
 end

@@ -8,10 +8,10 @@
     <%= f.text_field :english_latin, class: 'form-control form-control-lg' %>
   </div>
   <br>
-  <% if action_name == 'new' %>
+  <% if action_name.in? ['new', 'create'] || %>
     <%= submit_tag 'Create', type: 'submit', class: "btn btn-primary" %>
     <%= link_to 'Slides', language_slides_path(@language), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
-  <% elsif action_name == 'edit' %>
+  <% elsif action_name.in? ['edit', 'update'] %>
     <%= submit_tag 'Update', type: 'submit', class: "btn btn-primary" %>
     <%= link_to 'Back', language_slide_path(@language, @slide), class: 'btn btn-secondary', role: 'button', "aria-pressed" => 'true' %>
   <% end %>
