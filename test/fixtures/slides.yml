@@ -9,7 +9,7 @@ one:
 
 two:
   id: 2
-  english_latin: MyString
-  target_script: MyString
-  target_ipa: MyString
+  english_latin: MyString2
+  target_script: MyString2
+  target_ipa: MyString2
   language_id: 1
