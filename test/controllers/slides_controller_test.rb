@@ -55,7 +55,7 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'post create success' do
+  test 'post create success html' do
     assert_difference 'Slide.count', 1 do
       post language_slides_path(@language), params: {
         slide: {
@@ -68,7 +68,21 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_language_slide_path @language
   end
 
-  test 'post create fail' do
+  test 'post create success json' do
+    assert_difference 'Slide.count', 1 do
+      post language_slides_path(@language), params: {
+        slide: {
+          english_latin: 'hello',
+          target_script: 'hello',
+          target_ipa: 'ewa'
+        }
+      }, as: :json
+    end
+    assert_response :success
+    assert_equal 'New Slide Created', @response.body
+  end
+
+  test 'post create fail html' do
     assert_no_difference 'Slide.count' do
       post language_slides_path(@language), params: {
         slide: {
@@ -79,6 +93,20 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :success
+  end
+
+  test 'post create fail json' do
+    assert_no_difference 'Slide.count' do
+      post language_slides_path(@language), params: {
+        slide: {
+          english_latin: 'hello',
+          target_script: nil,
+          target_ipa: nil
+        }
+      }, as: :json
+    end
+    assert_response :success
+    assert_equal "Target script can't be blank", @response.body
   end
 
   test 'get edit' do

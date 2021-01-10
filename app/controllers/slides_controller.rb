@@ -31,12 +31,9 @@ class SlidesController < ApplicationController
   def create
     @slide = @language.slides.new slide_params
     if @slide.save
-      redirect_to new_language_slide_path(@language),
-        notice: 'New Slide Created'
+      create_success
     else
-      slides_for_new
-      flash[:alert] = @slide.errors.full_messages.to_sentence
-      render :new
+      create_fail
     end
   end
 
@@ -56,6 +53,28 @@ class SlidesController < ApplicationController
   end
 
   private
+
+  def create_success
+    message = 'New Slide Created'
+    respond_to do |format|
+      format.html do
+        redirect_to new_language_slide_path(@language), notice: message
+      end
+      format.json { render json: message }
+    end
+  end
+
+  def create_fail
+    message = @slide.errors.full_messages.to_sentence
+    respond_to do |format|
+      format.html do
+        slides_for_new
+        flash[:alert] = message
+        render :new
+      end
+      format.json { render json: message }
+    end
+  end
 
   def slides_for_new
     @slides = @language.slides.order(:id).reverse.take(10)
