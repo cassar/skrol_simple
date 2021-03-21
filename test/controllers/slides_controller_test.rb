@@ -106,7 +106,7 @@ class SlidesControllerTest < ActionDispatch::IntegrationTest
       }, as: :json
     end
     assert_response :success
-    assert_equal "Target script can't be blank", @response.body
+    assert_match "Target script can't be blank", @response.body
   end
 
   test 'get edit' do

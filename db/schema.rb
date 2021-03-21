@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_060925) do
+ActiveRecord::Schema.define(version: 2021_03_21_105347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_12_29_060925) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "language_id"
     t.index ["language_id"], name: "index_slides_on_language_id"
+    t.index ["target_script", "target_ipa", "english_latin", "language_id"], name: "slide_validation_index", unique: true
   end
 
   create_table "students", force: :cascade do |t|
