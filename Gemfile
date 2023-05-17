@@ -38,6 +38,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap', '~> 5.0.0.alpha1'
 gem 'jquery-rails'
 
+# Bundle and transpile JavaScript in Rails with esbuild, rollup.js, or Webpack.
+gem 'jsbundling-rails'
+
+gem 'net-http'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
